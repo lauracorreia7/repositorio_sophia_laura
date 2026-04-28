@@ -51,3 +51,24 @@ def calcula_pontos_soma(faces):
     for lado in faces:
         soma = soma + lado
     return soma
+
+def calcula_pontos_sequencia_baixa(faces):
+    lados = ''.join(faces)
+    if lados.find('1')!=-1:
+        if lados.find('2')!=-1:
+            if lados.find('3')!=-1:
+                if lados.find('4')!=-1:
+                    resultado = 15
+    elif lados.find('2')!=-1:
+        if lados.find('3')!=-1:
+            if lados.find('4')!=-1:
+                if lados.find('5')!=-1:
+                    resultado = 15
+    elif lados.find('3')!=-1:
+        if lados.find('4')!=-1:
+            if lados.find('5')!=-1:
+                if lados.find('6')!=-1:
+                    resultado = 15
+    else:
+        resultado = 0
+    return resultado
