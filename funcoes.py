@@ -148,9 +148,11 @@ def faz_jogada(lis_dados, str_categoria, dic_cartela):
     lista = ['sem_combinacao','quadra','full_house','sequencia_baixa','sequencia_alta','cinco_iguais']
     if str_categoria in lista:
         dicionario = calcula_pontos_regra_avancada(lis_dados)
-        pontos = dicionario['str_categoria']
+        pontos = dicionario[str_categoria]
+        dic_cartela['regra_avancada'][str_categoria] = pontos
     else:
+        numero = int(str_categoria)
         total = calcula_pontos_regra_simples(lis_dados)
-        pontos = total['str_categoria']
-    dic_cartela[str_categoria] = dic_cartela[str_categoria] + pontos
+        pontos = total[numero]
+        dic_cartela['regra_simples'][numero] = pontos
     return dic_cartela
