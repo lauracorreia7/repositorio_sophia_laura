@@ -113,3 +113,19 @@ def calcula_pontos_full_house(lista):
                     soma += elemento
     return soma
 
+def calcula_pontos_quadra(faces):
+    dicionario = {}
+    resposta = 0
+    soma = 0
+    for lado in faces:
+        if lado not in dicionario:
+            dicionario[lado] = 1
+            soma = soma + lado
+        else:
+            dicionario[lado] = dicionario[lado] + 1
+            soma = soma + lado
+
+    for lado in dicionario:
+        if dicionario[lado]>=4:
+            resposta = soma
+    return resposta
