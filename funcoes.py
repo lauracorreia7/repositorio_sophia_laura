@@ -143,3 +143,14 @@ def calcula_pontos_regra_avancada(faces):
     dicionario['sequencia_alta'] = calcula_pontos_sequencia_alta(faces)
     dicionario['sequencia_baixa'] = calcula_pontos_sequencia_baixa(faces)
     return dicionario
+
+def faz_jogada(lis_dados, str_categoria, dic_cartela):
+    lista = ['sem_combinacao','quadra','full_house','sequencia_baixa','sequencia_alta','cinco_iguais']
+    if str_categoria in lista:
+        dicionario = calcula_pontos_regra_avancada(lis_dados)
+        pontos = dicionario['str_categoria']
+    else:
+        total = calcula_pontos_regra_simples(lis_dados)
+        pontos = total['str_categoria']
+    dic_cartela[str_categoria] = dic_cartela[str_categoria] + pontos
+    return dic_cartela
