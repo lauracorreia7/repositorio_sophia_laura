@@ -53,7 +53,11 @@ def calcula_pontos_soma(faces):
     return soma
 
 def calcula_pontos_sequencia_baixa(faces):
-    lados = ''.join(faces)
+    lados = ''
+    for lado in faces:
+        lado = str(lado)
+        lados = lados + lado
+    resultado = 0
     if lados.find('1')!=-1:
         if lados.find('2')!=-1:
             if lados.find('3')!=-1:
@@ -85,33 +89,20 @@ def calcula_pontos_sequencia_alta(faces):
         resultado = 0   
     return resultado
 
-def calcula_pontos_full_house(lista):
-    dados_3 = []
-    dados_3[0] = lista[0]
-    dados_2 = []
+def calcula_pontos_full_house(faces):
+    dicionario = {}
     soma = 0
-    i = 1
-    while i < lista:
-        if lista[i] == dados_3[0]:
-            dados_3.append(lista[i])
+    resultado = 0
+    for lado in faces:
+        if lado not in dicionario:
+            dicionario[lado] = 1
+            soma = soma + lado
         else:
-            dados_2.append(lista[i])
-        i += 1
-    if len(dados_3) == 3:
-        for elemento in dados_2:
-            if dados_2[0] == dados_2[1]:
-                for elemento in dados_3:
-                    soma += elemento
-                for elemento in dados_2:
-                    soma += elemento
-    if len(dados_2) == 3:
-        for elemento in dados_3:
-            if dados_3[0] == dados_3[1] and dados_3[0] == dados_3[2]: 
-                for elemento in dados_3:
-                    soma += elemento
-                for elemento in dados_2:
-                    soma += elemento
-    return soma
+            dicionario[lado] = dicionario[lado] + 1
+            soma = soma + lado
+    if 3 in dicionario.values() and 2 in dicionario.values():
+        resultado = soma
+    return resultado
 
 def calcula_pontos_quadra(faces):
     dicionario = {}
@@ -129,3 +120,26 @@ def calcula_pontos_quadra(faces):
         if dicionario[lado]>=4:
             resposta = soma
     return resposta
+
+def calcula_pontos_quina(faces):
+    dicionario = {}
+    resposta = 0
+    for lado in faces:
+        if lado not in dicionario:
+            dicionario[lado] = 1
+        else:
+            dicionario[lado] = dicionario[lado] + 1
+    for lado in dicionario:
+        if dicionario[lado]>=5:
+            resposta = 50
+    return resposta
+
+def calcula_pontos_regra_avancada(faces):
+    dicionario = {}
+    dicionario['cinco_iguais'] = calcula_pontos_quina(faces)
+    dicionario['full_house'] = calcula_pontos_full_house(faces)
+    dicionario['quadra'] = calcula_pontos_quadra(faces)
+    dicionario['sem_combinacao'] = calcula_pontos_soma(faces)
+    dicionario['sequencia_alta'] = calcula_pontos_sequencia_alta(faces)
+    dicionario['sequencia_baixa'] = calcula_pontos_sequencia_baixa(faces)
+    return dicionario
