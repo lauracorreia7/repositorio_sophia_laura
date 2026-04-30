@@ -84,3 +84,32 @@ def calcula_pontos_sequencia_alta(faces):
     else:
         resultado = 0   
     return resultado
+
+def calcula_pontos_full_house(lista):
+    dados_3 = []
+    dados_3[0] = lista[0]
+    dados_2 = []
+    soma = 0
+    i = 1
+    while i < lista:
+        if lista[i] == dados_3[0]:
+            dados_3.append(lista[i])
+        else:
+            dados_2.append(lista[i])
+        i += 1
+    if len(dados_3) == 3:
+        for elemento in dados_2:
+            if dados_2[0] == dados_2[1]:
+                for elemento in dados_3:
+                    soma += elemento
+                for elemento in dados_2:
+                    soma += elemento
+    if len(dados_2) == 3:
+        for elemento in dados_3:
+            if dados_3[0] == dados_3[1] and dados_3[0] == dados_3[2]: 
+                for elemento in dados_3:
+                    soma += elemento
+                for elemento in dados_2:
+                    soma += elemento
+    return soma
+
