@@ -53,41 +53,22 @@ def calcula_pontos_soma(faces):
     return soma
 
 def calcula_pontos_sequencia_baixa(faces):
-    lados = ''
-    for lado in faces:
-        lado = str(lado)
-        lados = lados + lado
-    resultado = 0
-    if lados.find('1')!=-1:
-        if lados.find('2')!=-1:
-            if lados.find('3')!=-1:
-                if lados.find('4')!=-1:
-                    resultado = 15
-    elif lados.find('2')!=-1:
-        if lados.find('3')!=-1:
-            if lados.find('4')!=-1:
-                if lados.find('5')!=-1:
-                    resultado = 15
-    elif lados.find('3')!=-1:
-        if lados.find('4')!=-1:
-            if lados.find('5')!=-1:
-                if lados.find('6')!=-1:
-                    resultado = 15
-    else:
-        resultado = 0
-    return resultado
+    resposta = 0
+    if 1 in faces and 2 in faces and 3 in faces and 4 in faces:
+        resposta = 15
+    if 2 in faces and 3 in faces and 4 in faces and 5 in faces:
+        resposta = 15
+    if 3 in faces and 4 in faces and 5 in faces and 6 in faces:
+        resposta = 15
+    return resposta
 
 def calcula_pontos_sequencia_alta(faces):
-    if 2 in faces and 3 in faces and 4 in faces and 5 in faces:
-        if 1 in faces:
-            resultado = 30
-        elif 6 in faces:
-            resultado = 30 
-        else:
-            resultado = 0
-    else:
-        resultado = 0   
-    return resultado
+    resposta = 0
+    if 1 in faces and 2 in faces and 3 in faces and 4 in faces and 5 in faces:
+        resposta = 30
+    if 2 in faces and 3 in faces and 4 in faces and 5 in faces and 6 in faces:
+        resposta = 30
+    return resposta
 
 def calcula_pontos_full_house(faces):
     dicionario = {}
